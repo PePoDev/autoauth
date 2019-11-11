@@ -1,17 +1,23 @@
 package main
 
 import (
-	"AutoAuthen/pkg/auth"
-	"AutoAuthen/pkg/auth/options"
 	"flag"
 	"fmt"
 	"os"
 	"os/exec"
+
+	"github.com/pepodev/autoauth/pkg/auth"
+	"github.com/pepodev/autoauth/pkg/auth/options"
+	"github.com/pepodev/xlog"
 )
 
 var detached = flag.Bool("d", false, "run app as a daemon with -d=true")
 
 func init() {
+	xlog.DefaultXlogFormatter()
+
+	xlog.CreateLog().Info("Test")
+
 	if !flag.Parsed() {
 		flag.Parse()
 	}
@@ -31,5 +37,6 @@ func init() {
 }
 
 func main() {
+
 	auth.LoginWithOption(options.KMITL{})
 }
