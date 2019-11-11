@@ -9,17 +9,17 @@ import (
 	"os/exec"
 )
 
-var godaemon = flag.Bool("d", false, "run app as a daemon with -d=true")
+var detached = flag.Bool("d", false, "run app as a daemon with -d=true")
 
 func init() {
 	if !flag.Parsed() {
 		flag.Parse()
 	}
-	if *godaemon {
+	if *detached {
 		args := os.Args[1:]
 		for i := 0; i < len(args); i++ {
-			if args[i] == "-d=true" {
-				args[i] = "-d=false"
+			if args[i] == "-d" {
+				args[i] = ""
 				break
 			}
 		}
