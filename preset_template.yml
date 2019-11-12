@@ -2,21 +2,26 @@ autoauth:
 
   login:
     endpoint: http://www.test.com/login
+    method: POST
+    encoding: utf-8
     header:
+      - User-Agent:AutoAuth
+    body:
       - username:pepodev
-      - password:s3cr3t_p@ssword
-    encrypt_header: true
-    key: s3cr3t_k3y
+      - password:s3cr3t_p@ssw0rd
 
   logout:
     endpoint: http://www.test.com/logout
+    method: POST
+    encoding: utf-8
     header:
-      - username:pepodev
-      - password:s3cr3t_p@ssw0rd
-    encrypt_header: true
-    encrypt_key: s3cr3t_k3y
+      - User-Agent:AutoAuth
+      - X-XSRF-TOKEN:{token}
 
   heartbeat:
     endpoint: https://www.google.com
     interval: 5s
     retry: 2
+
+save:
+  token: token
