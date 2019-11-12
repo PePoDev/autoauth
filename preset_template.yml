@@ -1,0 +1,22 @@
+autoauth:
+
+  login:
+    endpoint: http://www.test.com/login
+    header:
+      - username:pepodev
+      - password:s3cr3t_p@ssword
+    encrypt_header: true
+    key: s3cr3t_k3y
+
+  logout:
+    endpoint: http://www.test.com/logout
+    header:
+      - username:pepodev
+      - password:s3cr3t_p@ssw0rd
+    encrypt_header: true
+    encrypt_key: s3cr3t_k3y
+
+  heartbeat:
+    endpoint: https://www.google.com
+    interval: 5s
+    retry: 2

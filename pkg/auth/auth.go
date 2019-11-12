@@ -1,7 +1,10 @@
 package auth
 
 import (
-	"fmt"
+	"net/http"
+
+	"github.com/pepodev/xlog"
+	"github.com/valyala/fasthttp"
 )
 
 // StartAutoLogin ...
@@ -14,9 +17,26 @@ func StopAutoLogin() {
 
 }
 
-// LoginWithOption will create request to authentication service
-func LoginWithOption(option LoginOption) {
+// Login will create request to authentication service
+func Login(option LoginOption) {
 	if err := option.Login(); err != nil {
-		fmt.Printf("error: %v", err)
+		xlog.Errorf("error: %v", err)
 	}
+}
+
+// Logout ...
+func Logout() {
+
+}
+
+// Heartbeats ...
+func Heartbeats() bool {
+	code, _, err := fasthttp.GetTimeout(nil, "http://google.com/", 5)
+	if err != nil {
+		return false
+	}
+	if code != http.StatusOK {
+		return false
+	}
+	return true
 }
