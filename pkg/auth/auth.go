@@ -11,8 +11,6 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-var globalState *sync.WaitGroup
-
 var (
 	heartbeatEndpoint string
 	heartbeatTimeout  time.Duration
@@ -25,7 +23,7 @@ func StartAutoLogin() {
 	heartbeatTimeout = utils.ViperGetDuration("autoauth.heartbeat.timeout")
 	heartbeatInterval = viper.GetDuration("autoauth.heartbeat.interval")
 
-	globalState = &sync.WaitGroup{}
+	globalState := &sync.WaitGroup{}
 	globalState.Add(1)
 	go func() {
 		for true {
@@ -40,7 +38,7 @@ func StartAutoLogin() {
 
 // StopAutoLogin ...
 func StopAutoLogin() {
-	globalState.Done()
+
 }
 
 // Login will create request to authentication service
