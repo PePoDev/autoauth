@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"net/http"
 	"sync"
 	"time"
 
@@ -18,8 +17,8 @@ func StartAutoLogin() {
 	globalState.Add(1)
 	go func() {
 		for true {
-			if IsHeatbeatAlive() == false {
-				globalState.Done()
+			if !IsHeatbeatAlive() {
+				Login()
 			}
 			time.Sleep(time.Second * viper.GetDuration("autoauth.heartbeat.interval"))
 		}
@@ -47,10 +46,6 @@ func IsHeatbeatAlive() bool {
 	code, _, err := fasthttp.GetTimeout(nil, viper.GetString("autoauth.heartbeat.endpoint"), time.Second*viper.GetDuration("autoauth.heartbeat.timeout"))
 	xlog.Debugf("Status Code: %v Error Message: %v", code, err)
 	if err != nil {
-		xlog.Errorf("Heartbeat to %s", viper.GetString("autoauth.heartbeat.endpoint"))
-		return false
-	}
-	if code != http.StatusOK {
 		xlog.Errorf("Heartbeat to %s", viper.GetString("autoauth.heartbeat.endpoint"))
 		return false
 	}
