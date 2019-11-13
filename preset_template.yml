@@ -1,17 +1,24 @@
+# template preset for kmitl wifi portal 
 autoauth:
+  encrypted: false
 
   login:
-    endpoint: http://www.test.com/login
+    endpoint: https://connect.kmitl.ac.th:8445/PortalServer/Webauth/webAuthAction!login.action
     method: POST
     encoding: utf-8
     header:
       - User-Agent:AutoAuth
     body:
-      - username:pepodev
+      - userName:59050xxx@kmitl.ac.th
       - password:s3cr3t_p@ssw0rd
+      - authLan:en
+      - validCode:200
+      - hasValidateNextUpdatePassword:true
+      - browserFlag:en
+      - ClientIp:127.0.0.1
 
   logout:
-    endpoint: http://www.test.com/logout
+    endpoint: https://connect.kmitl.ac.th:8445/PortalServer/Webauth/webAuthAction!logout.action
     method: POST
     encoding: utf-8
     header:
@@ -19,9 +26,17 @@ autoauth:
       - X-XSRF-TOKEN:{token}
 
   heartbeat:
-    endpoint: https://www.google.com
-    interval: 5s
+    endpoint: https://connect.kmitl.ac.th:8445/PortalServer/Webauth/webAuthAction!hearbeat.action
+    method: POST
+    encoding: utf-8
+    header:
+      - User-Agent:AutoAuth
+      - X-XSRF-TOKEN:{token}
+    body:
+      - userName:59050xxx@kmitl.ac.th
+    interval: 5
+    timeout: 5
     retry: 2
 
 save:
-  token: token
+  token: null
