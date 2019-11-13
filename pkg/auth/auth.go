@@ -1,9 +1,13 @@
 package auth
 
 import (
-	"sync"
+	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
+	"github.com/pepodev/autoauth/internal/message"
 	"github.com/pepodev/autoauth/internal/utils"
 
 	"github.com/pepodev/xlog"
@@ -23,8 +27,12 @@ func StartAutoLogin() {
 	heartbeatTimeout = utils.ViperGetDuration("autoauth.heartbeat.timeout")
 	heartbeatInterval = viper.GetDuration("autoauth.heartbeat.interval")
 
-	globalState := &sync.WaitGroup{}
-	globalState.Add(1)
+	fmt.Println(message.GetWelcome())
+	xlog.Info("AutoAuth Started")
+
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
 	go func() {
 		for true {
 			if !IsHeatbeatAlive() {
@@ -33,7 +41,8 @@ func StartAutoLogin() {
 			time.Sleep(time.Second * heartbeatInterval)
 		}
 	}()
-	globalState.Wait()
+
+	xlog.Infof("os %v AutoAuth stopped", <-sigs)
 }
 
 // StopAutoLogin ...

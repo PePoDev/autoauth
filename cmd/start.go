@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
 
@@ -55,9 +54,6 @@ var startCmd = &cobra.Command{
 		if err := viper.ReadInConfig(); err != nil {
 			xlog.Fatalf("fatal error config file: %s \n", err)
 		}
-
-		fmt.Println(message.GetWelcome())
-		xlog.Info("AutoAuth Start")
 
 		auth.StartAutoLogin()
 	},
