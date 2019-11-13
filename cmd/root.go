@@ -1,11 +1,9 @@
 package cmd
 
 import (
-	"fmt"
-	"os"
-
 	"github.com/sirupsen/logrus"
 
+	"github.com/pepodev/autoauth/internal/message"
 	"github.com/pepodev/xlog"
 	"github.com/spf13/cobra"
 )
@@ -14,21 +12,17 @@ var author string = "PePoDev <pepo.dev@outlook.com>"
 var license string = "MIT"
 var version string = "v0.1.0"
 
-var rootCmd = &cobra.Command{
-	Use: "autoauth",
-	Long: fmt.Sprint("AutoAuth is a CLI to set automatic authentication for Internet Login Portal\n",
-		"Documents can be found here https://www.github.com/PePoDev/autoauth"),
+// RootCmd is the root of command
+var RootCmd = &cobra.Command{
+	Use:     "autoauth",
+	Long:    message.GetWelcome(),
 	Version: version,
 }
 
 func init() {
 	xlog.DefaultXlogFormatter()
-	xlog.SetLevel(logrus.InfoLevel)
-}
+	xlog.SetLevel(logrus.DebugLevel)
 
-// Execute ...
-func Execute() {
-	if err := rootCmd.Execute(); err != nil {
-		os.Exit(1)
-	}
+	RootCmd.AddCommand(startCmd)
+	RootCmd.AddCommand(stopCmd)
 }
