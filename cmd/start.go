@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 
+	"github.com/pepodev/autoauth/internal/message"
 	"github.com/pepodev/autoauth/pkg/auth"
 
 	"github.com/pepodev/xlog"
@@ -14,10 +15,9 @@ import (
 )
 
 var startCmd = &cobra.Command{
-	Use:   "start",
-	Short: "Start autoauth",
-	Long: fmt.Sprint("AutoAuth is a CLI to set automatic authentication for Internet Login Portal\n",
-		"Documents can be found here https://www.github.com/PePoDev/autoauth"),
+	Use:        "start",
+	Short:      "Start autoauth",
+	Long:       message.GetWelcome(),
 	SuggestFor: []string{"run"},
 	Example:    "autoauth start -d -f config.yml -k my_s3cr3t_k3y",
 	Run: func(cmd *cobra.Command, args []string) {
@@ -25,7 +25,6 @@ var startCmd = &cobra.Command{
 		isDetached, _ := cmd.Flags().GetBool("detach")
 		fileName, _ := cmd.Flags().GetString("file")
 		key, _ := cmd.Flags().GetString("key")
-
 		viper.SetDefault("key", key)
 
 		// Detech flag to run in detach mode
@@ -57,7 +56,9 @@ var startCmd = &cobra.Command{
 			xlog.Fatalf("fatal error config file: %s \n", err)
 		}
 
-		xlog.Info("AutoAuth Started")
+		fmt.Println(message.GetWelcome())
+		xlog.Info("AutoAuth Start")
+
 		auth.StartAutoLogin()
 	},
 }

@@ -15,6 +15,7 @@ func GetWelcome() string {
           ___________________________________________________________________________________________________________________________________
            _____________________________________________________________________________ https://www.github.com/pepodev/autoauth _____________
 		  
-AutoAuth is CLI to create preset and start automatic authentication web portal for internet access like Public-Wifi`)
+AutoAuth is CLI to create preset and start automatic authentication web portal for internet access like Public-Wifi
+`)
 	return string(message)
 }

@@ -4,6 +4,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/pepodev/autoauth/internal/utils"
+
 	"github.com/pepodev/xlog"
 	"github.com/spf13/viper"
 	"github.com/valyala/fasthttp"
@@ -11,8 +13,16 @@ import (
 
 var globalState *sync.WaitGroup
 
+var (
+	heartbeatEndpoint string
+	heartbeatTimeout  time.Duration
+)
+
 // StartAutoLogin ...
 func StartAutoLogin() {
+	heartbeatEndpoint = utils.ViperGetString("autoauth.heartbeat.endpoint")
+	heartbeatTimeout = utils.ViperGetDuration("autoauth.heartbeat.timeout")
+
 	globalState = &sync.WaitGroup{}
 	globalState.Add(1)
 	go func() {
@@ -43,12 +53,12 @@ func Logout() {
 
 // IsHeatbeatAlive ...
 func IsHeatbeatAlive() bool {
-	code, _, err := fasthttp.GetTimeout(nil, viper.GetString("autoauth.heartbeat.endpoint"), time.Second*viper.GetDuration("autoauth.heartbeat.timeout"))
-	xlog.Debugf("Status Code: %v Error Message: %v", code, err)
+	code, _, err := fasthttp.GetTimeout(nil, heartbeatEndpoint, time.Second*heartbeatTimeout)
+	xlog.Debugf("code: %v err: %v", code, err)
 	if err != nil {
-		xlog.Errorf("Heartbeat to %s", viper.GetString("autoauth.heartbeat.endpoint"))
+		xlog.Errorf("Heartbeat to %s", heartbeatEndpoint)
 		return false
 	}
-	xlog.Infof("Heartbeat to %s", viper.GetString("autoauth.heartbeat.endpoint"))
+	xlog.Infof("Heartbeat to %s", heartbeatEndpoint)
 	return true
 }

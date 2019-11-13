@@ -1,16 +1,14 @@
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/pepodev/autoauth/internal/message"
 	"github.com/spf13/cobra"
 )
 
 var stopCmd = &cobra.Command{
-	Use:   "stop",
-	Short: "stop a previous process",
-	Long: fmt.Sprint("Stop a previous process\n",
-		"Documents can be found here https://www.github.com/PePoDev/autoauth"),
+	Use:     "stop",
+	Short:   "Stop autoauth",
+	Long:    message.GetWelcome(),
 	Example: "autoauth stop [name]",
 	Run: func(cmd *cobra.Command, args []string) {
 
