@@ -22,12 +22,9 @@ var startCmd = &cobra.Command{
 	SuggestFor: []string{"run"},
 	Example:    "autoauth start -d -f config.yml -k my_s3cr3t_k3y",
 	Run: func(cmd *cobra.Command, args []string) {
-		isDetached, err := cmd.Flags().GetBool("detach")
-		fileName, err := cmd.Flags().GetString("file")
-		key, err := cmd.Flags().GetString("key")
-		if err != nil {
-			xlog.Fatalf("%v", err)
-		}
+		isDetached, _ := cmd.Flags().GetBool("detach")
+		fileName, _ := cmd.Flags().GetString("file")
+		key, _ := cmd.Flags().GetString("key")
 		viper.SetDefault("key", key)
 
 		if isDetached {
