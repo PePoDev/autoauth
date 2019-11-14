@@ -8,8 +8,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var author string = "PePoDev <pepo.dev@outlook.com>"
-var license string = "MIT"
 var version string = "v0.1.0"
 
 // RootCmd is the root of command

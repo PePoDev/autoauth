@@ -49,7 +49,6 @@ var stopCmd = &cobra.Command{
 			}
 		}
 
-		return
 		preset := auth.LoadPresetFromPath(utils.GetWorkingDirectory(), fileName)
 		preset.RequestLogout()
 
