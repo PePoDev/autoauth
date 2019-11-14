@@ -1,73 +1,89 @@
 package auth
 
 import (
-	"fmt"
-	"os"
-	"os/signal"
-	"syscall"
 	"time"
 
 	"github.com/pepodev/autoauth/internal/message"
 	"github.com/pepodev/autoauth/internal/utils"
 
 	"github.com/pepodev/xlog"
-	"github.com/spf13/viper"
-	"github.com/valyala/fasthttp"
 )
 
-var (
-	heartbeatEndpoint string
-	heartbeatTimeout  time.Duration
-	heartbeatInterval time.Duration
-)
+var isRunning bool = false
+var tries int = 0
 
-// StartAutoLogin ...
-func StartAutoLogin() {
-	heartbeatEndpoint = utils.ViperGetString("autoauth.heartbeat.endpoint")
-	heartbeatTimeout = utils.ViperGetDuration("autoauth.heartbeat.timeout")
-	heartbeatInterval = viper.GetDuration("autoauth.heartbeat.interval")
-
-	fmt.Println(message.GetWelcome())
+// StartAutoLogin will start corutine to detect internet connection and send login request.
+func StartAutoLogin(preset AutoAuthPreset) {
+	xlog.Infof("\n%s", message.GetWelcome())
 	xlog.Info("AutoAuth Started")
 
-	sigs := make(chan os.Signal, 1)
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	isRunning = true
 
 	go func() {
-		for true {
-			if !IsHeatbeatAlive() {
-				Login()
+		for isRunning {
+			if !preset.IsHeatbeatAlive() {
+				status := preset.RequestLogin()
+				if !status {
+					xlog.Info("Login fail")
+					tries++
+				}
 			}
-			time.Sleep(time.Second * heartbeatInterval)
+			time.Sleep(time.Second * preset.Heartbeat.Interval)
 		}
+		xlog.Info("corutine has stopped by user")
 	}()
-
-	xlog.Infof("os %v AutoAuth stopped", <-sigs)
 }
 
-// StopAutoLogin ...
+// StopAutoLogin will stop AutoAuth
 func StopAutoLogin() {
-
+	if !isRunning {
+		xlog.Info("AutoAuth is not started yet")
+		return
+	}
+	isRunning = false
 }
 
-// Login will create request to authentication service
-func Login() {
+// RequestLogin will create request to authentication service
+func (preset *AutoAuthPreset) RequestLogin() bool {
+	err := utils.Do(preset.Login.Endpoint,
+		preset.Login.Method,
+		preset.Login.Header,
+		preset.Login.Body)
 
-}
-
-// Logout ...
-func Logout() {
-
-}
-
-// IsHeatbeatAlive ...
-func IsHeatbeatAlive() bool {
-	code, _, err := fasthttp.GetTimeout(nil, heartbeatEndpoint, time.Second*heartbeatTimeout)
-	xlog.Debugf("code: %v err: %v", code, err)
 	if err != nil {
-		xlog.Errorf("Heartbeat to %s is OK", heartbeatEndpoint)
+		xlog.Errorf("Login to %s is Error", preset.Login.Endpoint)
 		return false
 	}
-	xlog.Infof("Heartbeat to %s", heartbeatEndpoint)
+	xlog.Infof("Login to %s is OK", preset.Login.Endpoint)
+	return true
+}
+
+// RequestLogout send logout request
+func (preset *AutoAuthPreset) RequestLogout() bool {
+	err := utils.Do(preset.Logout.Endpoint,
+		preset.Logout.Method,
+		preset.Logout.Header,
+		preset.Logout.Body)
+
+	if err != nil {
+		xlog.Errorf("Logout to %s is Error", preset.Logout.Endpoint)
+		return false
+	}
+	xlog.Infof("Logout to %s is OK", preset.Logout.Endpoint)
+	return true
+}
+
+// IsHeatbeatAlive send request to heartbeat endpoint and return status of request
+func (preset *AutoAuthPreset) IsHeatbeatAlive() bool {
+	err := utils.Do(preset.Heartbeat.Endpoint,
+		preset.Heartbeat.Method,
+		preset.Heartbeat.Header,
+		preset.Heartbeat.Body)
+
+	if err != nil {
+		xlog.Errorf("Heartbeat to %s is Error", preset.Heartbeat.Endpoint)
+		return false
+	}
+	xlog.Infof("Heartbeat to %s is OK", preset.Heartbeat.Endpoint)
 	return true
 }

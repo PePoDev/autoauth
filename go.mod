@@ -6,6 +6,7 @@ require (
 	github.com/klauspost/compress v1.9.2 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
 	github.com/mailru/easyjson v0.7.0 // indirect
+	github.com/mitchellh/go-ps v0.0.0-20190716172923-621e5597135b
 	github.com/olivere/elastic/v7 v7.0.9 // indirect
 	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/pepodev/xlog v0.1.0
@@ -16,6 +17,7 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.5.0
 	github.com/valyala/fasthttp v1.6.0
-	golang.org/x/sys v0.0.0-20191112214154-59a1497f0cea // indirect
+	golang.org/x/crypto v0.0.0-20191112222119-e1110fd1c708
+	golang.org/x/sys v0.0.0-20191113165036-4c7a9d0fe056 // indirect
 	gopkg.in/yaml.v2 v2.2.5 // indirect
 )

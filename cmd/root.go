@@ -26,4 +26,5 @@ func init() {
 	RootCmd.AddCommand(startCmd)
 	RootCmd.AddCommand(stopCmd)
 	RootCmd.AddCommand(createCmd)
+	RootCmd.AddCommand(psCmd)
 }
