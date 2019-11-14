@@ -87,9 +87,11 @@ Help command
 
 - Implement timeout from preset file
 
-- Add unit tests
+- Write unit tests
 
-- Add benchmark
+- Write benchmark
+
+- Write documents
 
 ## 🕵️‍♀️ Contributing
 
