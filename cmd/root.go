@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var version string = "v0.1.0"
+var version string = "v1.1.4"
 
 // RootCmd is the root of command
 var RootCmd = &cobra.Command{
