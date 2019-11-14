@@ -19,7 +19,7 @@ var RootCmd = &cobra.Command{
 
 func init() {
 	xlog.DefaultXlogFormatter()
-	xlog.SetLevel(logrus.DebugLevel)
+	xlog.SetLevel(logrus.InfoLevel)
 
 	RootCmd.AddCommand(startCmd)
 	RootCmd.AddCommand(stopCmd)

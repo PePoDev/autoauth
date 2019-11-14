@@ -23,13 +23,13 @@ var startCmd = &cobra.Command{
 	Example:    "autoauth start -d -f config.yml -k my_s3cr3t_k3y",
 	Run: func(cmd *cobra.Command, args []string) {
 		isDetached, _ := cmd.Flags().GetBool("detach")
-		fileName, _ := cmd.Flags().GetString("file")
-		key, _ := cmd.Flags().GetString("key")
-		viper.SetDefault("key", key)
-
 		if isDetached {
 			utils.StartInDetachMode()
 		}
+
+		fileName, _ := cmd.Flags().GetString("file")
+		key, _ := cmd.Flags().GetString("key")
+		viper.SetDefault("key", key)
 
 		preset := auth.LoadPresetFromPath(utils.GetWorkingDirectory(), fileName)
 

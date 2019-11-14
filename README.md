@@ -4,26 +4,38 @@
 
 Automatic Internet Portal Authentication CLI written in Go 🛰🛰
 
-## Table of contents
+Support Windows maybe Linux and MacOS also supported (untested)
 
-[Installation](google.com)
+## 📚 Table of contents
 
-## Installation
+- [Installation](https://github.com/PePoDev/autoauth#installation)
+
+- [Example Config](https://github.com/PePoDev/autoauth#example-preset-file)
+
+- [Usage](https://github.com/PePoDev/autoauth#cli-usage)
+
+- [Todos](https://github.com/PePoDev/autoauth#todos)
+
+## ⛏ Installation
 
 ### go get
 
 > go get -u github.com/pepodev/autoauth
 
-### docker
+### docker (coming soon)
 
-> docker run --name AutoAuth -d -v ./autoauth.yml:./autoauth.yml pepodev/autoauth
+> docker run --name AutoAuth -d -v ./autoauth.yml:./autoauth.yml coming_soon
 
 Note: docker network need ability to access external internet
 
-## Example Preset file
+### Complied binary (coming soon too)
+
+Check [release](https://github.com/PePoDev/autoauth/releases) page to download binary file.
+
+## 📃 Example Preset file
 
 ```yml
-# Example preset file for univercity KMITL wifi portal
+# Example preset file for univercity KMITL wifi portal 
 autoauth:
   name: KMITL
   encrypted: false
@@ -31,49 +43,50 @@ autoauth:
   login:
     endpoint: https://connect.kmitl.ac.th:8445/PortalServer/Webauth/webAuthAction!login.action
     method: POST
-    encoding: utf-8
     header:
       - User-Agent:AutoAuth
     body:
-      - userName:59050xxx@kmitl.ac.th
-      - password:s3cr3t_p@ssw0rd
-      - authLan:en
-      - validCode:200
-      - hasValidateNextUpdatePassword:true
-      - browserFlag:en
-      - ClientIp:127.0.0.1
+      - userName=59050xxx@kmitl.ac.th
+      - password=s3cr3t_p@ssw0rd
+      - authLan=en
+      - validCode=200
+      - hasValidateNextUpdatePassword=true
+      - browserFlag=en
 
   logout:
     endpoint: https://connect.kmitl.ac.th:8445/PortalServer/Webauth/webAuthAction!logout.action
     method: POST
-    encoding: utf-8
     header:
       - User-Agent:AutoAuth
       - X-XSRF-TOKEN:{token}
 
   heartbeat:
-    endpoint: https://connect.kmitl.ac.th:8445/PortalServer/Webauth/webAuthAction!hearbeat.action
-    method: POST
-    encoding: utf-8
+    endpoint: http://clients3.google.com/generate_204
+    method: GET
     header:
       - User-Agent:AutoAuth
-      - X-XSRF-TOKEN:{token}
-    body:
-      - userName:59050xxx@kmitl.ac.th
-    interval: 5
-    timeout: 5
-    retry: 2
+    interval: 3
+    timeout: 3
+    retry: 3
 
 save:
-  token: null
+  - token
 ```
 
-## CLI Usage
+## 📕 CLI Usage
 
 Help command
 
 > autoauth --help
 
+## 📝 Todos
 
+- Save key from response for use in another purpose
 
-## asd
+- Add retries rule
+
+- Implement timeout from preset file
+
+## 🕵️‍♀️ Contributing
+
+Yes, Thanks for all contributor.

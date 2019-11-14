@@ -5,6 +5,7 @@ import (
 
 	"github.com/pepodev/autoauth/internal/message"
 	"github.com/pepodev/autoauth/internal/utils"
+	"github.com/valyala/fasthttp"
 
 	"github.com/pepodev/xlog"
 )
@@ -42,10 +43,11 @@ func (preset AutoAuthPreset) StopAutoLogin() {
 
 // RequestLogin will create request to authentication service
 func (preset *AutoAuthPreset) RequestLogin() bool {
-	err := utils.Do(preset.Login.Endpoint,
+	resp, err := utils.Do(preset.Login.Endpoint,
 		preset.Login.Method,
 		preset.Login.Header,
 		preset.Login.Body)
+	defer fasthttp.ReleaseResponse(resp)
 
 	if err != nil {
 		xlog.Errorf("Login to %s is Error", preset.Login.Endpoint)
@@ -57,10 +59,11 @@ func (preset *AutoAuthPreset) RequestLogin() bool {
 
 // RequestLogout send logout request
 func (preset *AutoAuthPreset) RequestLogout() bool {
-	err := utils.Do(preset.Logout.Endpoint,
+	resp, err := utils.Do(preset.Logout.Endpoint,
 		preset.Logout.Method,
 		preset.Logout.Header,
 		preset.Logout.Body)
+	defer fasthttp.ReleaseResponse(resp)
 
 	if err != nil {
 		xlog.Errorf("Logout to %s is Error", preset.Logout.Endpoint)
@@ -72,12 +75,13 @@ func (preset *AutoAuthPreset) RequestLogout() bool {
 
 // IsHeatbeatAlive send request to heartbeat endpoint and return status of request
 func (preset *AutoAuthPreset) IsHeatbeatAlive() bool {
-	err := utils.Do(preset.Heartbeat.Endpoint,
+	resp, err := utils.Do(preset.Heartbeat.Endpoint,
 		preset.Heartbeat.Method,
 		preset.Heartbeat.Header,
 		preset.Heartbeat.Body)
+	defer fasthttp.ReleaseResponse(resp)
 
-	if err != nil {
+	if err != nil || resp.StatusCode() == 302 {
 		xlog.Errorf("Heartbeat to %s is Error", preset.Heartbeat.Endpoint)
 		return false
 	}
