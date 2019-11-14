@@ -105,6 +105,8 @@ Help command
 
 - Write documents
 
+- Create GUI
+
 ## 🕵️‍♀️ Contributing
 
 Yes, Thanks for all contributor.

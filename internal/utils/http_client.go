@@ -46,7 +46,7 @@ func Do(url string, method string, headers []string, bodys []string) (*fasthttp.
 
 	req.SetBodyString(temp)
 
-	xlog.Warn(string(req.Body()))
+	xlog.Debugf("resp: %s", string(req.Body()))
 
 	req.Header.SetMethod(strings.ToUpper(method))
 	defer fasthttp.ReleaseRequest(req)

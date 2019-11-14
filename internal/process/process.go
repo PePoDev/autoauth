@@ -8,7 +8,7 @@ import (
 	"github.com/pepodev/xlog"
 )
 
-// FindProcess ...
+// FindProcess search by name and return processes list
 func FindProcess(key string) (foundPS []ps.Process) {
 	ps, _ := ps.Processes()
 
@@ -22,7 +22,7 @@ func FindProcess(key string) (foundPS []ps.Process) {
 	return
 }
 
-// KillProcessID ...
+// KillProcessID kill process by id
 func KillProcessID(pid int) error {
 	process, err := os.FindProcess(pid)
 	if err != nil {

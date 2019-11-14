@@ -21,17 +21,17 @@ var createCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		reader := bufio.NewReader(os.Stdin)
 
-		fmt.Print("Enter Username: ")
+		fmt.Print("Name: ")
 		username, _ := reader.ReadString('\n')
 
-		fmt.Print("Enter Password: ")
-		bytePassword, err := terminal.ReadPassword(int(syscall.Stdin))
+		fmt.Print("Key: ")
+		byteKey, err := terminal.ReadPassword(int(syscall.Stdin))
 		if err == nil {
-			fmt.Println("\nPassword typed: " + string(bytePassword))
+			fmt.Println("\nKey typed: " + string(byteKey))
 		}
-		password := string(bytePassword)
+		key := string(byteKey)
 
-		xlog.Infof("%s %s", username, password)
+		xlog.Infof("%s %s", username, key)
 	},
 }
 
