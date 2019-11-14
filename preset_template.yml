@@ -1,4 +1,4 @@
-# template preset for kmitl wifi portal 
+# Example preset file for univercity KMITL wifi portal 
 autoauth:
   encrypted: false
 
