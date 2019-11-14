@@ -81,7 +81,11 @@ save:
 
 Help command
 
-> autoauth --help
+```console
+~$ autoauth --help
+```
+
+![Banner](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/screenshots/screenshot-1.png)
 
 ## 📝 Todos
 
