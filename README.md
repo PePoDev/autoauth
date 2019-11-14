@@ -4,7 +4,7 @@
 
 Automatic Internet Portal Authentication CLI written in Go 🛰🛰
 
-Support Windows maybe Linux and MacOS also supported (untested)
+Current supported on Windows, Maybe Linux and MacOS also support too (untested)
 
 ## 📚 Table of contents
 
