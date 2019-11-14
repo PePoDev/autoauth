@@ -1,10 +1,7 @@
 package process
 
 import (
-	"errors"
 	"os"
-	"os/exec"
-	"strconv"
 	"strings"
 
 	"github.com/mitchellh/go-ps"
@@ -12,16 +9,13 @@ import (
 )
 
 // FindProcess ...
-func FindProcess(key string) (pid int, pname string, err error) {
-	err = errors.New("process not found")
+func FindProcess(key string) (foundPS []ps.Process) {
 	ps, _ := ps.Processes()
 
 	for i := range ps {
 		if strings.Contains(ps[i].Executable(), key) && ps[i].Pid() != os.Getpid() {
-			pid = ps[i].Pid()
-			pname = ps[i].Executable()
-			err = nil
-			xlog.Debugf("pid: %v name: %v err: %v", pid, pname, err)
+			foundPS = append(foundPS, ps[i])
+			xlog.Debugf("pid: %v name: %v", ps[i].Pid(), ps[i].Executable())
 		}
 	}
 
@@ -30,6 +24,10 @@ func FindProcess(key string) (pid int, pname string, err error) {
 
 // KillProcessID ...
 func KillProcessID(pid int) error {
-	kill := exec.Command("taskkill", "/T", "/F", "/PID", strconv.Itoa(pid))
-	return kill.Start()
+	process, err := os.FindProcess(pid)
+	if err != nil {
+		xlog.Fatalf("Error when find process [PID: %v] [msg: %v]", pid, err)
+	}
+	err = process.Kill()
+	return err
 }
