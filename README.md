@@ -100,3 +100,5 @@ Help command
 ## 🕵️‍♀️ Contributing
 
 Yes, Thanks for all contributor.
+
+If you have any question or issues also check [this](https://github.com/PePoDev/autoauth/issues/new) page.
