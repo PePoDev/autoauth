@@ -36,7 +36,7 @@ var startCmd = &cobra.Command{
 		sigs := make(chan os.Signal, 1)
 		signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-		auth.StartAutoLogin(preset)
+		preset.StartAutoLogin()
 
 		xlog.Infof("os %v AutoAuth stopped", <-sigs)
 	},

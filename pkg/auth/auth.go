@@ -9,23 +9,20 @@ import (
 	"github.com/pepodev/xlog"
 )
 
-var isRunning bool = false
-var tries int = 0
-
 // StartAutoLogin will start corutine to detect internet connection and send login request.
-func StartAutoLogin(preset AutoAuthPreset) {
+func (preset AutoAuthPreset) StartAutoLogin() {
 	xlog.Infof("\n%s", message.GetWelcome())
 	xlog.Info("AutoAuth Started")
 
-	isRunning = true
+	preset.IsRunning = true
 
 	go func() {
-		for isRunning {
+		for preset.IsRunning {
 			if !preset.IsHeatbeatAlive() {
 				status := preset.RequestLogin()
 				if !status {
 					xlog.Info("Login fail")
-					tries++
+					preset.Try++
 				}
 			}
 			time.Sleep(time.Second * preset.Heartbeat.Interval)
@@ -35,12 +32,12 @@ func StartAutoLogin(preset AutoAuthPreset) {
 }
 
 // StopAutoLogin will stop AutoAuth
-func StopAutoLogin() {
-	if !isRunning {
+func (preset AutoAuthPreset) StopAutoLogin() {
+	if !preset.IsRunning {
 		xlog.Info("AutoAuth is not started yet")
 		return
 	}
-	isRunning = false
+	preset.IsRunning = false
 }
 
 // RequestLogin will create request to authentication service

@@ -30,11 +30,15 @@ type BaseAutoAuthPreset struct {
 
 // AutoAuthPreset is base struct contain all configuration of preset file
 type AutoAuthPreset struct {
+	Name      string
 	Encrypted bool
 	Login     AutoAuthLogin
 	Logout    AutoAuthLogout
 	Heartbeat AutoAuthHeartbeat
 	Save      []string
+
+	IsRunning bool
+	Try       int
 }
 
 // AutoAuthLogin contain login preset
