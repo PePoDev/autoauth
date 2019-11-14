@@ -20,11 +20,15 @@ Current supported on Windows, Maybe Linux and MacOS also support too (untested)
 
 ### go get
 
-> go get -u github.com/pepodev/autoauth
+```console
+~$ go get -u github.com/pepodev/autoauth
+```
 
 ### docker (coming soon)
 
-> docker run --name AutoAuth -d -v ./autoauth.yml:./autoauth.yml coming_soon
+```console
+~$ docker run --name AutoAuth -d -v ./autoauth.yml:./autoauth.yml coming_soon
+```
 
 Note: docker network need ability to access external internet
 
