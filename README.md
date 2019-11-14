@@ -87,6 +87,10 @@ Help command
 
 - Implement timeout from preset file
 
+- Add unit tests
+
+- Add benchmark
+
 ## 🕵️‍♀️ Contributing
 
 Yes, Thanks for all contributor.
