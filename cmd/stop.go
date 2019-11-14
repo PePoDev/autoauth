@@ -14,7 +14,7 @@ var stopCmd = &cobra.Command{
 	Use:     "stop",
 	Short:   "Stop autoauth",
 	Long:    message.GetWelcome(),
-	Example: "autoauth stop [name]",
+	Example: "autoauth stop -p [pid]",
 	Run: func(cmd *cobra.Command, args []string) {
 		fileName, _ := cmd.Flags().GetString("file")
 		key, _ := cmd.Flags().GetString("key")

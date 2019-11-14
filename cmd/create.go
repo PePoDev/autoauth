@@ -17,7 +17,7 @@ var createCmd = &cobra.Command{
 	Use:     "create",
 	Short:   "Create preset file for autoauth configuration",
 	Long:    message.GetWelcome(),
-	Example: "autoauth stop [name]",
+	Example: "autoauth create",
 	Run: func(cmd *cobra.Command, args []string) {
 		reader := bufio.NewReader(os.Stdin)
 
