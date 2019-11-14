@@ -93,6 +93,10 @@ Help command
 
 - Add retries rule
 
+- Create preset file from CLI
+
+- Decrypt with key for read secret variables from preset file
+
 - Implement timeout from preset file
 
 - Write unit tests
