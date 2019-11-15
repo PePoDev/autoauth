@@ -8,13 +8,13 @@ Current supported on Windows, Maybe Linux and MacOS also support too (untested)
 
 ## 📚 Table of contents
 
-- [Installation](-installation)
+- [Installation](#-installation)
 
-- [Example Config](-example-preset-file)
+- [Example Config](#-example-preset-file)
 
-- [Usage](-cli-usage)
+- [Usage](#-cli-usage)
 
-- [Todos](-todos)
+- [Todos](#-todos)
 
 ## ⛏ Installation
 
