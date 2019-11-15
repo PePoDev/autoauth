@@ -8,13 +8,13 @@ Current supported on Windows, Maybe Linux and MacOS also support too (untested)
 
 ## 📚 Table of contents
 
-- [Installation](https://github.com/PePoDev/autoauth#installation)
+- [Installation](-installation)
 
-- [Example Config](https://github.com/PePoDev/autoauth#example-preset-file)
+- [Example Config](-example-preset-file)
 
-- [Usage](https://github.com/PePoDev/autoauth#cli-usage)
+- [Usage](-cli-usage)
 
-- [Todos](https://github.com/PePoDev/autoauth#todos)
+- [Todos](-todos)
 
 ## ⛏ Installation
 
