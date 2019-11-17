@@ -19,14 +19,18 @@ func (preset AutoAuthPreset) StartAutoLogin() {
 
 	go func() {
 		for preset.IsRunning {
-			if !preset.IsHeatbeatAlive() {
-				status := preset.RequestLogin()
-				if !status {
-					xlog.Info("Login fail")
-					preset.Try++
-				}
-			}
 			time.Sleep(time.Second * preset.Heartbeat.Interval)
+
+			err := preset.IsHeatbeatAlive()
+			if err == nil {
+				continue
+			}
+
+			err = preset.RequestLogin()
+			if err != nil {
+				xlog.Errorf("Login fail with err: %v", err)
+				preset.Try++
+			}
 		}
 		xlog.Info("corutine has stopped by user")
 	}()
@@ -42,7 +46,7 @@ func (preset AutoAuthPreset) StopAutoLogin() {
 }
 
 // RequestLogin will create request to authentication service
-func (preset *AutoAuthPreset) RequestLogin() bool {
+func (preset *AutoAuthPreset) RequestLogin() error {
 	resp, err := utils.Do(preset.Login.Endpoint,
 		preset.Login.Method,
 		preset.Login.Header,
@@ -51,14 +55,14 @@ func (preset *AutoAuthPreset) RequestLogin() bool {
 
 	if err != nil {
 		xlog.Errorf("Login to %s is Error", preset.Login.Endpoint)
-		return false
+		return err
 	}
 	xlog.Infof("Login to %s is OK", preset.Login.Endpoint)
-	return true
+	return nil
 }
 
 // RequestLogout send logout request
-func (preset *AutoAuthPreset) RequestLogout() bool {
+func (preset *AutoAuthPreset) RequestLogout() error {
 	resp, err := utils.Do(preset.Logout.Endpoint,
 		preset.Logout.Method,
 		preset.Logout.Header,
@@ -67,14 +71,14 @@ func (preset *AutoAuthPreset) RequestLogout() bool {
 
 	if err != nil {
 		xlog.Errorf("Logout to %s is Error", preset.Logout.Endpoint)
-		return false
+		return err
 	}
 	xlog.Infof("Logout to %s is OK", preset.Logout.Endpoint)
-	return true
+	return nil
 }
 
 // IsHeatbeatAlive send request to heartbeat endpoint and return status of request
-func (preset *AutoAuthPreset) IsHeatbeatAlive() bool {
+func (preset *AutoAuthPreset) IsHeatbeatAlive() error {
 	resp, err := utils.Do(preset.Heartbeat.Endpoint,
 		preset.Heartbeat.Method,
 		preset.Heartbeat.Header,
@@ -83,8 +87,8 @@ func (preset *AutoAuthPreset) IsHeatbeatAlive() bool {
 
 	if err != nil || resp.StatusCode() == 302 {
 		xlog.Errorf("Heartbeat to %s is Error", preset.Heartbeat.Endpoint)
-		return false
+		return err
 	}
 	xlog.Infof("Heartbeat to %s is OK", preset.Heartbeat.Endpoint)
-	return true
+	return nil
 }

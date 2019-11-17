@@ -50,7 +50,9 @@ var stopCmd = &cobra.Command{
 		}
 
 		preset := auth.LoadPresetFromPath(utils.GetWorkingDirectory(), fileName)
-		preset.RequestLogout()
+		if err := preset.RequestLogout(); err != nil {
+			xlog.Fatalf("%v", err)
+		}
 
 	},
 }
