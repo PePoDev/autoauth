@@ -32,5 +32,5 @@ autoauth:
     timeout: 3
     retry: 3
 
-save:
-  - token
+  save:
+    - token
