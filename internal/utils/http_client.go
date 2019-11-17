@@ -32,21 +32,21 @@ func Do(url string, method string, headers []string, bodys []string) (*fasthttp.
 	req := fasthttp.AcquireRequest()
 	req.SetRequestURI(url)
 
+	var tempHeader []string
 	for _, header := range headers {
-		h := strings.Split(header, ":")
-		req.Header.Add(h[0], h[1])
+		tempHeader = strings.Split(header, ":")
+		req.Header.Add(tempHeader[0], tempHeader[1])
 	}
 
-	temp := ""
+	var requestBodyString string
 	if strings.ToUpper(method) != "GET" {
 		for _, body := range bodys {
-			temp += body + "&"
+			requestBodyString += body + "&"
 		}
 	}
+	req.SetBodyString(requestBodyString)
 
-	req.SetBodyString(temp)
-
-	xlog.Debugf("resp: %s", string(req.Body()))
+	xlog.Debugf("req body: %s", string(req.Body()))
 
 	req.Header.SetMethod(strings.ToUpper(method))
 	defer fasthttp.ReleaseRequest(req)

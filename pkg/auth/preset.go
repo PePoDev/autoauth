@@ -30,18 +30,13 @@ type BaseAutoAuthPreset struct {
 
 // AutoAuthPreset is base struct contain all configuration of preset file
 type AutoAuthPreset struct {
-	AutoAuthData
-	Login     AutoAuthLogin
-	Logout    AutoAuthLogout
-	Heartbeat AutoAuthHeartbeat
-}
-
-// AutoAuthData contains the data to use in main instance
-type AutoAuthData struct {
 	Name      string
 	Encrypted bool
 
-	Save []string
+	Login     AutoAuthLogin
+	Logout    AutoAuthLogout
+	Heartbeat AutoAuthHeartbeat
+	Save      []string
 
 	IsRunning bool
 	Try       int
@@ -49,26 +44,27 @@ type AutoAuthData struct {
 
 // AutoAuthLogin contain login preset
 type AutoAuthLogin struct {
-	AutoAuthRequestSetting
-}
-
-// AutoAuthLogout contain logout preset
-type AutoAuthLogout struct {
-	AutoAuthRequestSetting
-}
-
-// AutoAuthHeartbeat contain heartbeat preset
-type AutoAuthHeartbeat struct {
-	AutoAuthRequestSetting
-	Interval time.Duration
-	Timeout  time.Duration
-	Retry    int
-}
-
-// AutoAuthRequestSetting is struct to contain data for send request
-type AutoAuthRequestSetting struct {
 	Endpoint string
 	Method   string
 	Header   []string
 	Body     []string
+}
+
+// AutoAuthLogout contain logout preset
+type AutoAuthLogout struct {
+	Endpoint string
+	Method   string
+	Header   []string
+	Body     []string
+}
+
+// AutoAuthHeartbeat contain heartbeat preset
+type AutoAuthHeartbeat struct {
+	Endpoint string
+	Method   string
+	Header   []string
+	Body     []string
+	Interval time.Duration
+	Timeout  time.Duration
+	Retry    int
 }
