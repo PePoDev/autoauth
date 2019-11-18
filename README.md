@@ -10,31 +10,35 @@ Current supported on Windows, Maybe Linux and MacOS also support too (untested)
 
 - [Installation](#-installation)
 
-- [Example Config](#-example-preset-file)
+- [Example Preset](#-example-preset-file)
 
 - [Usage](#-cli-usage)
 
 - [Todos](#-todos)
 
+- [Dependencies](#-dependencies)
+
+- [Contributing](#-contributing)
+
 ## ⛏ Installation
 
-### go get
+### Go get
 
 ```console
 ~$ go get -u github.com/pepodev/autoauth
 ```
 
-### docker (coming soon)
+### Docker
 
 ```console
-~$ docker run --name AutoAuth -d -v ./autoauth.yml:./autoauth.yml coming_soon
+~$ docker run --name autoauth -d -v ${pwd}/autoauth.yml:/autoauth.yml quay.io/pepodev/autoauth
 ```
 
 Note: docker network need ability to access external internet
 
 ### Complied binary (coming soon too)
 
-Check [release](https://github.com/PePoDev/autoauth/releases) page to download binary file.
+Check [release](https://github.com/PePoDev/autoauth/releases) page to see available binary file.
 
 ## 📃 Example Preset file
 
@@ -73,13 +77,19 @@ autoauth:
     timeout: 3
     retry: 3
 
-save:
+  save:
   - token
 ```
 
+Note: also support in various format include json, toml, hcl, envfile. It's powered by [Viper](https://github.com/spf13/viper)
+
 ## 📕 CLI Usage
 
-Help command
+```console
+~$ autoauth start -f ./autoauth.yml
+```
+
+use ***Help*** command to see, What's Autoauth CLI can do.
 
 ```console
 ~$ autoauth --help
@@ -88,6 +98,10 @@ Help command
 ![Banner](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/screenshots/screenshot-1.png)
 
 ## 📝 Todos
+
+- ~~Add docker image~~
+
+- Add complied binary file
 
 - Save key from response for use in another purpose
 
@@ -106,6 +120,16 @@ Help command
 - Write documents
 
 - Create GUI
+
+## 🛒 Dependencies
+
+- [Cobra](https://github.com/spf13/cobra) A Commander for modern Go CLI interactions
+
+- [Viper](https://github.com/spf13/viper) Go configuration with fangs
+
+- [Fasthttp](https://github.com/valyala/fasthttp) Used for httpclient. Zero memory allocations. Up to 10x faster than net/http
+
+- [Go-ps](https://github.com/mitchellh/go-ps) Find, list, and inspect processes from Go (golang).
 
 ## 🕵️‍♀️ Contributing
 
