@@ -18,7 +18,7 @@ Current supported on Windows, Maybe Linux and MacOS also support too (untested)
 
 - [Dependencies](#-dependencies)
 
-- [Contributing](#-contributing)
+- [Contributing](#️️-contributing)
 
 ## ⛏ Installation
 
@@ -60,6 +60,7 @@ autoauth:
       - validCode=200
       - hasValidateNextUpdatePassword=true
       - browserFlag=en
+    timeout: 5
 
   logout:
     endpoint: https://connect.kmitl.ac.th:8445/PortalServer/Webauth/webAuthAction!logout.action
@@ -67,14 +68,15 @@ autoauth:
     header:
       - User-Agent:AutoAuth
       - X-XSRF-TOKEN:{token}
+    timeout: 5
 
   heartbeat:
     endpoint: http://clients3.google.com/generate_204
     method: GET
     header:
       - User-Agent:AutoAuth
-    interval: 3
-    timeout: 3
+    interval: 5
+    timeout: 5
     retry: 3
 
   save:
