@@ -19,5 +19,5 @@ require (
 	github.com/valyala/fasthttp v1.6.0
 	golang.org/x/crypto v0.0.0-20191117063200-497ca9f6d64f
 	golang.org/x/sys v0.0.0-20191119060738-e882bf8e40c2 // indirect
-	gopkg.in/yaml.v2 v2.2.5 // indirect
+	gopkg.in/yaml.v2 v2.2.6 // indirect
 )

@@ -15,7 +15,7 @@ func LoadPresetFromPath(dir string, fileName string) AutoAuthPreset {
 		xlog.Fatalf("fatal error config file: %s \n", err)
 	}
 
-	basePreset := BaseAutoAuthPreset{}
+	basePreset := MainAutoAuthPreset{}
 	if err := viper.Unmarshal(&basePreset); err != nil {
 		xlog.Fatalf("%v", err)
 	}
@@ -23,20 +23,26 @@ func LoadPresetFromPath(dir string, fileName string) AutoAuthPreset {
 	return basePreset.AutoAuth
 }
 
-// BaseAutoAuthPreset is used to map to preset file like yml or json file
-type BaseAutoAuthPreset struct {
+// MainAutoAuthPreset is used to map to preset file like yml or json file
+type MainAutoAuthPreset struct {
 	AutoAuth AutoAuthPreset `mapstructure:"autoauth"`
 }
 
 // AutoAuthPreset is base struct contain all configuration of preset file
 type AutoAuthPreset struct {
-	Name      string
-	Encrypted bool
+	AutoAuthData `mapstructure:",squash"`
 
 	Login     AutoAuthLogin
 	Logout    AutoAuthLogout
 	Heartbeat AutoAuthHeartbeat
-	Save      []string
+}
+
+// AutoAuthData contain data for AutoAuth struct
+type AutoAuthData struct {
+	Name      string
+	Encrypted bool
+
+	Save []string
 
 	IsRunning bool
 	Try       int
@@ -44,29 +50,27 @@ type AutoAuthPreset struct {
 
 // AutoAuthLogin contain login preset
 type AutoAuthLogin struct {
-	Endpoint string
-	Method   string
-	Header   []string
-	Body     []string
-	Timeout  time.Duration
+	AutoAuthBaseReuqest `mapstructure:",squash"`
 }
 
 // AutoAuthLogout contain logout preset
 type AutoAuthLogout struct {
-	Endpoint string
-	Method   string
-	Header   []string
-	Body     []string
-	Timeout  time.Duration
+	AutoAuthBaseReuqest `mapstructure:",squash"`
 }
 
 // AutoAuthHeartbeat contain heartbeat preset
 type AutoAuthHeartbeat struct {
+	AutoAuthBaseReuqest `mapstructure:",squash"`
+
+	Interval time.Duration
+	Retry    int
+}
+
+// AutoAuthBaseReuqest is base struct contain data to create request
+type AutoAuthBaseReuqest struct {
 	Endpoint string
 	Method   string
 	Header   []string
 	Body     []string
 	Timeout  time.Duration
-	Interval time.Duration
-	Retry    int
 }

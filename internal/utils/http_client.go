@@ -53,7 +53,7 @@ func Do(url string, method string, headers []string, bodys []string, timeout tim
 
 	resp := fasthttp.AcquireResponse()
 
-	err := client.DoTimeout(req, resp, timeout)
+	err := client.DoTimeout(req, resp, timeout*time.Second)
 	xlog.Debugf("[code: %v] [body: %v] [err: %v]", resp.StatusCode(), string(resp.Body()), err)
 	if err != nil {
 		return resp, err
