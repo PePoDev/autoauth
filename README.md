@@ -87,11 +87,15 @@ Note: also support in various format include json, toml, hcl, envfile. It's powe
 
 ## 📕 CLI Usage
 
+Basic usage run this command to **Start** Autoauth
+
 ```console
 ~$ autoauth start -f ./autoauth.yml
 ```
 
-use ***Help*** command to see, What's Autoauth CLI can do.
+![Start Command](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/screenshots/screenshot-2.png)
+
+Or use **Help** command to see, What's Autoauth CLI can do for you.
 
 ```console
 ~$ autoauth --help
