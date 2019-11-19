@@ -28,7 +28,7 @@ func init() {
 }
 
 // Do will send http request and return the response
-func Do(url string, method string, headers []string, bodys []string) (*fasthttp.Response, error) {
+func Do(url string, method string, headers []string, bodys []string, timeout time.Duration) (*fasthttp.Response, error) {
 	req := fasthttp.AcquireRequest()
 	req.SetRequestURI(url)
 
@@ -53,7 +53,7 @@ func Do(url string, method string, headers []string, bodys []string) (*fasthttp.
 
 	resp := fasthttp.AcquireResponse()
 
-	err := client.DoTimeout(req, resp, time.Second*10)
+	err := client.DoTimeout(req, resp, timeout)
 	xlog.Debugf("[code: %v] [body: %v] [err: %v]", resp.StatusCode(), string(resp.Body()), err)
 	if err != nil {
 		return resp, err

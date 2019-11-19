@@ -48,6 +48,7 @@ type AutoAuthLogin struct {
 	Method   string
 	Header   []string
 	Body     []string
+	Timeout  time.Duration
 }
 
 // AutoAuthLogout contain logout preset
@@ -56,6 +57,7 @@ type AutoAuthLogout struct {
 	Method   string
 	Header   []string
 	Body     []string
+	Timeout  time.Duration
 }
 
 // AutoAuthHeartbeat contain heartbeat preset
@@ -64,7 +66,7 @@ type AutoAuthHeartbeat struct {
 	Method   string
 	Header   []string
 	Body     []string
-	Interval time.Duration
 	Timeout  time.Duration
+	Interval time.Duration
 	Retry    int
 }

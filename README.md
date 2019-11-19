@@ -113,7 +113,7 @@ use ***Help*** command to see, What's Autoauth CLI can do.
 
 - Decrypt with key for read secret variables from preset file
 
-- Implement timeout from preset file
+- ~~Implement timeout from preset file~~
 
 - Write unit tests
 
