@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var version string = "v1.2.1"
+var version string = "v1.2.2"
 
 // RootCmd is the root of command
 var RootCmd = &cobra.Command{
@@ -19,7 +19,7 @@ var RootCmd = &cobra.Command{
 
 func init() {
 	xlog.DefaultXlogFormatter()
-	xlog.SetLevel(logrus.InfoLevel)
+	xlog.SetLevel(logrus.DebugLevel)
 
 	RootCmd.AddCommand(startCmd)
 	RootCmd.AddCommand(stopCmd)
