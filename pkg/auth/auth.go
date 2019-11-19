@@ -50,7 +50,8 @@ func (preset *AutoAuthPreset) RequestLogin() error {
 	resp, err := utils.Do(preset.Login.Endpoint,
 		preset.Login.Method,
 		preset.Login.Header,
-		preset.Login.Body)
+		preset.Login.Body,
+		preset.Login.Timeout)
 	defer fasthttp.ReleaseResponse(resp)
 
 	if err != nil {
@@ -66,7 +67,8 @@ func (preset *AutoAuthPreset) RequestLogout() error {
 	resp, err := utils.Do(preset.Logout.Endpoint,
 		preset.Logout.Method,
 		preset.Logout.Header,
-		preset.Logout.Body)
+		preset.Logout.Body,
+		preset.Logout.Timeout)
 	defer fasthttp.ReleaseResponse(resp)
 
 	if err != nil {
@@ -82,7 +84,8 @@ func (preset *AutoAuthPreset) IsHeatbeatAlive() error {
 	resp, err := utils.Do(preset.Heartbeat.Endpoint,
 		preset.Heartbeat.Method,
 		preset.Heartbeat.Header,
-		preset.Heartbeat.Body)
+		preset.Heartbeat.Body,
+		preset.Heartbeat.Timeout)
 	defer fasthttp.ReleaseResponse(resp)
 
 	if err != nil || resp.StatusCode() == 302 {

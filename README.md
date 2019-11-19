@@ -4,8 +4,6 @@
 
 Automatic Internet Portal Authentication CLI written in Go 🛰🛰
 
-Current supported on Windows, Maybe Linux and MacOS also support too (untested)
-
 ## 📚 Table of contents
 
 - [Installation](#-installation)
@@ -27,6 +25,8 @@ Current supported on Windows, Maybe Linux and MacOS also support too (untested)
 ```console
 ~$ go get -u github.com/pepodev/autoauth
 ```
+
+Supported on Windows, Maybe Linux and MacOS also support too (untested)
 
 ### Docker
 
