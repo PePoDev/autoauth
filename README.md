@@ -1,7 +1,8 @@
-# <p style="text-align: center;">AutoAuth</p>
+# AutoAuth
+
+![Banner](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/banner.png)
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/pepodev/autoauth)](https://goreportcard.com/report/github.com/pepodev/autoauth) [![GoDoc](https://godoc.org/github.com/PePoDev/autoauth?status.svg)](http://godoc.org/github.com/PePoDev/autoauth) [![codebeat badge](https://codebeat.co/badges/b7d3c2af-ac18-457e-9ff0-4976f11061d3)](https://codebeat.co/projects/github-com-pepodev-autoauth-master) [![GolangCI](https://golangci.com/badges/github.com/PePoDev/autoauth.svg)](https://golangci.com) [![fuzzit](https://app.fuzzit.dev/badge?org_id=pepodev-gh)](https://app.fuzzit.dev/orgs/pepodev-gh/dashboard) [![Build Status](https://travis-ci.com/PePoDev/autoauth.svg?branch=master)](https://travis-ci.com/PePoDev/autoauth) [![codecov](https://codecov.io/gh/PePoDev/autoauth/branch/master/graph/badge.svg)](https://codecov.io/gh/PePoDev/autoauth) [![Sourcegraph](https://sourcegraph.com/github.com/PePoDev/autoauth/-/badge.svg)](https://sourcegraph.com/github.com/PePoDev/autoauth?badge) [![GitHub tag](https://img.shields.io/github/tag/PePoDev/autoauth.svg)]() [![Docker Repository on Quay](https://quay.io/repository/pepodev/autoauth/status "Docker Repository on Quay")](https://quay.io/repository/pepodev/autoauth) ![GitHub](https://img.shields.io/github/license/pepodev/autoauth)
-![Banner](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/banner.png)
 
 Automatic Internet Portal Authentication CLI written in Go 🛰🛰
 
