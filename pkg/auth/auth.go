@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/pepodev/autoauth/internal/message"
@@ -88,9 +89,12 @@ func (preset *AutoAuthPreset) IsHeatbeatAlive() error {
 		preset.Heartbeat.Timeout)
 	defer fasthttp.ReleaseResponse(resp)
 
-	if err != nil || resp.StatusCode() == 302 {
+	if err != nil {
 		xlog.Errorf("Heartbeat to %s is Error", preset.Heartbeat.Endpoint)
 		return err
+	}
+	if resp.StatusCode() == 302 {
+		return fmt.Errorf("error: this web page redirects to internet portal")
 	}
 	xlog.Infof("Heartbeat to %s is OK", preset.Heartbeat.Endpoint)
 	return nil

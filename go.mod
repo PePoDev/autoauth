@@ -17,7 +17,7 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.5.0
 	github.com/valyala/fasthttp v1.6.0
-	golang.org/x/crypto v0.0.0-20191117063200-497ca9f6d64f
-	golang.org/x/sys v0.0.0-20191119060738-e882bf8e40c2 // indirect
-	gopkg.in/yaml.v2 v2.2.6 // indirect
+	golang.org/x/crypto v0.0.0-20191122220453-ac88ee75c92c
+	golang.org/x/sys v0.0.0-20191120155948-bd437916bb0e // indirect
+	gopkg.in/yaml.v2 v2.2.7 // indirect
 )
