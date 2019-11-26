@@ -147,4 +147,4 @@ If you have any question or issues also check [this](https://github.com/PePoDev/
 
 ## Specials Thanks
 
-- [Wandee](https://github.com/userkmitl) for URL endpoint public WiFi at KMITL university.
+- [Wandee](https://github.com/userkmitl) for internet portal endpoint at KMITL university.
