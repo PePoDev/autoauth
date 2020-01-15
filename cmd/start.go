@@ -33,12 +33,12 @@ var startCmd = &cobra.Command{
 
 		preset := auth.LoadPresetFromPath(utils.GetWorkingDirectory(), fileName)
 
-		sigs := make(chan os.Signal, 1)
-		signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+		sig := make(chan os.Signal, 1)
+		signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 
 		preset.StartAutoLogin()
 
-		xlog.Infof("os %v AutoAuth stopped", <-sigs)
+		xlog.Infof("os %v AutoAuth stopped", <-sig)
 	},
 }
 
