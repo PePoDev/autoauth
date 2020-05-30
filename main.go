@@ -1,13 +1,13 @@
 package main
 
 import (
-	"os"
+	"log"
 
 	"github.com/pepodev/autoauth/cmd"
 )
 
 func main() {
 	if err := cmd.RootCmd.Execute(); err != nil {
-		os.Exit(1)
+		log.Fatalf("%v", err.Error())
 	}
 }

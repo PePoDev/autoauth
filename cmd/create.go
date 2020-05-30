@@ -3,10 +3,9 @@ package cmd
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"syscall"
-
-	"github.com/pepodev/xlog"
 
 	"github.com/pepodev/autoauth/internal/message"
 	"github.com/spf13/cobra"
@@ -31,10 +30,6 @@ var createCmd = &cobra.Command{
 		}
 		key := string(byteKey)
 
-		xlog.Infof("%s %s", username, key)
+		log.Printf("%s %s\n", username, key)
 	},
-}
-
-func init() {
-
 }

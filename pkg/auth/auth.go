@@ -22,7 +22,7 @@ func (preset AutoAuthPreset) StartAutoLogin() {
 		for preset.IsRunning {
 			time.Sleep(time.Second * preset.Heartbeat.Interval)
 
-			err := preset.IsHeatbeatAlive()
+			err := preset.IsHeartbeatAlive()
 			if err == nil {
 				continue
 			}
@@ -80,8 +80,8 @@ func (preset *AutoAuthPreset) RequestLogout() error {
 	return nil
 }
 
-// IsHeatbeatAlive send request to heartbeat endpoint and return status of request
-func (preset *AutoAuthPreset) IsHeatbeatAlive() error {
+// IsHeartbeatAlive send request to heartbeat endpoint and return status of request
+func (preset *AutoAuthPreset) IsHeartbeatAlive() error {
 	resp, err := utils.Do(preset.Heartbeat.Endpoint,
 		preset.Heartbeat.Method,
 		preset.Heartbeat.Header,
