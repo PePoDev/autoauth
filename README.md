@@ -2,7 +2,17 @@
 
 ![Banner](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/banner.png)
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/pepodev/autoauth)](https://goreportcard.com/report/github.com/pepodev/autoauth) [![GoDoc](https://godoc.org/github.com/PePoDev/autoauth?status.svg)](http://godoc.org/github.com/PePoDev/autoauth) [![codebeat badge](https://codebeat.co/badges/b7d3c2af-ac18-457e-9ff0-4976f11061d3)](https://codebeat.co/projects/github-com-pepodev-autoauth-master) [![GolangCI](https://golangci.com/badges/github.com/PePoDev/autoauth.svg)](https://golangci.com) [![fuzzit](https://app.fuzzit.dev/badge?org_id=pepodev-gh)](https://app.fuzzit.dev/orgs/pepodev-gh/dashboard) [![Build Status](https://travis-ci.com/PePoDev/autoauth.svg?branch=master)](https://travis-ci.com/PePoDev/autoauth) [![codecov](https://codecov.io/gh/PePoDev/autoauth/branch/master/graph/badge.svg)](https://codecov.io/gh/PePoDev/autoauth) [![Sourcegraph](https://sourcegraph.com/github.com/PePoDev/autoauth/-/badge.svg)](https://sourcegraph.com/github.com/PePoDev/autoauth?badge) [![GitHub tag](https://img.shields.io/github/tag/PePoDev/autoauth.svg)]() [![Docker Repository on Quay](https://quay.io/repository/pepodev/autoauth/status "Docker Repository on Quay")](https://quay.io/repository/pepodev/autoauth) ![GitHub](https://img.shields.io/github/license/pepodev/autoauth)
+[![Go Report Card](https://goreportcard.com/badge/github.com/pepodev/autoauth)](https://goreportcard.com/report/github.com/pepodev/autoauth)
+[![GoDoc](https://godoc.org/github.com/PePoDev/autoauth?status.svg)](http://godoc.org/github.com/PePoDev/autoauth)
+[![codebeat badge](https://codebeat.co/badges/b7d3c2af-ac18-457e-9ff0-4976f11061d3)](https://codebeat.co/projects/github-com-pepodev-autoauth-master)
+[![GolangCI](https://golangci.com/badges/github.com/PePoDev/autoauth.svg)](https://golangci.com)
+[![fuzzit](https://app.fuzzit.dev/badge?org_id=pepodev-gh)](https://app.fuzzit.dev/orgs/pepodev-gh/dashboard)
+[![Build Status](https://travis-ci.com/PePoDev/autoauth.svg?branch=master)](https://travis-ci.com/PePoDev/autoauth)
+[![codecov](https://codecov.io/gh/PePoDev/autoauth/branch/master/graph/badge.svg)](https://codecov.io/gh/PePoDev/autoauth)
+[![Sourcegraph](https://sourcegraph.com/github.com/PePoDev/autoauth/-/badge.svg)](https://sourcegraph.com/github.com/PePoDev/autoauth?badge)
+[![GitHub tag](https://img.shields.io/github/tag/PePoDev/autoauth.svg)](https://github.com/PePoDev/autoauth/releases/latest)
+[![Docker Repository](https://img.shields.io/docker/cloud/build/pepodev/autoauth)](https://hub.docker.com/r/pepodev/autoauth)
+[![GitHub](https://img.shields.io/github/license/pepodev/autoauth)](https://github.com/PePoDev/autoauth/blob/master/LICENSE)
 
 **AutoAuth** is Automatic Internet Portal Authentication CLI written in Golang 🛰🛰
 
@@ -28,12 +38,10 @@
 ~$ go get -u github.com/pepodev/autoauth
 ```
 
-Supported on Windows, Maybe Linux and MacOS also support too (untested)
-
 ### Docker
 
 ```console
-~$ docker run --name autoauth -d -v ${pwd}/autoauth.yml:/autoauth.yml quay.io/pepodev/autoauth
+~$ docker run --name autoauth -d -v ${pwd}/autoauth.yml:/autoauth.yml pepodev/autoauth
 ```
 
 Note: docker network need ability to access external internet
@@ -45,7 +53,7 @@ Check [release](https://github.com/PePoDev/autoauth/releases) page to see availa
 ## 📃 Example Preset file
 
 ```yml
-# Example preset file for univercity KMITL wifi portal 
+# Example preset file for univercity KMITL wifi portal
 autoauth:
   name: KMITL
   encrypted: false
@@ -73,7 +81,7 @@ autoauth:
     timeout: 5
 
   heartbeat:
-    endpoint: http://clients3.google.com/generate_204
+    endpoint: http://clients3.google.com/generate_204 # Recommended endpoint for heartbeat
     method: GET
     header:
       - User-Agent:AutoAuth
@@ -82,10 +90,10 @@ autoauth:
     retry: 3
 
   save:
-  - token
+    - token
 ```
 
-Note: also support in various format include json, toml, hcl, envfile. It's powered by [Viper](https://github.com/spf13/viper)
+Note: The config also support in various format include json, toml, hcl, envfile. It's powered by [Viper](https://github.com/spf13/viper)
 
 ## 📕 CLI Usage
 
@@ -103,7 +111,7 @@ Or use **Help** command to see, What's Autoauth CLI can do for you.
 ~$ autoauth --help
 ```
 
-![Banner](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/screenshots/screenshot-1.png)
+![Help Command](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/screenshots/screenshot-1.png)
 
 ## 📝 Todos
 
