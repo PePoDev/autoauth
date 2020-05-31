@@ -31,6 +31,9 @@ func (preset AutoAuthPreset) StartAutoLogin() {
 			if err != nil {
 				xlog.Errorf("Login fail with err: %v", err)
 				preset.Try++
+				if preset.Try == preset.Heartbeat.Retry {
+					preset.IsRunning = false
+				}
 			}
 		}
 		xlog.Info("corutine has stopped by user")
