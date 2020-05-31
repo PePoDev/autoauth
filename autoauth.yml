@@ -1,7 +1,8 @@
-# Example preset file for univercity KMITL wifi portal 
+# Example preset file for univercity KMITL wifi portal
 autoauth:
   name: KMITL
   encrypted: false
+  # key: some-key-to-decrypt
 
   login:
     endpoint: https://connect.kmitl.ac.th:8445/PortalServer/Webauth/webAuthAction!login.action
