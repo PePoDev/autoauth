@@ -121,7 +121,7 @@ Or use **Help** command to see, What's Autoauth CLI can do for you.
 
 - Save key from response for use in another purpose
 
-- Add retries rule
+- ~~Add retries rule~~
 
 - Create preset file from CLI
 
@@ -152,7 +152,3 @@ Or use **Help** command to see, What's Autoauth CLI can do for you.
 Yes, Thanks for all contributor.
 
 If you have any question or issues also check [this](https://github.com/PePoDev/autoauth/issues/new) page.
-
-## Specials Thanks
-
-- [Wandee](https://github.com/userkmitl) for internet portal endpoint at KMITL university.
