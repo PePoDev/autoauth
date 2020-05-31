@@ -25,8 +25,7 @@ func (preset AutoAuthPreset) StartAutoLogin(sig chan os.Signal) {
 			time.Sleep(time.Second * preset.Heartbeat.Interval)
 
 			err := preset.IsHeartbeatAlive()
-			// if err == nil {
-			if false {
+			if err == nil {
 				continue
 			}
 
