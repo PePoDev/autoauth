@@ -2,6 +2,8 @@ package auth
 
 import (
 	"fmt"
+	"os"
+	"syscall"
 	"time"
 
 	"github.com/pepodev/autoauth/internal/message"
@@ -12,7 +14,7 @@ import (
 )
 
 // StartAutoLogin will start corutine to detect internet connection and send login request.
-func (preset AutoAuthPreset) StartAutoLogin() {
+func (preset AutoAuthPreset) StartAutoLogin(sig chan os.Signal) {
 	xlog.Infof("\n%s", message.GetWelcome())
 	xlog.Info("AutoAuth Started")
 
@@ -23,7 +25,8 @@ func (preset AutoAuthPreset) StartAutoLogin() {
 			time.Sleep(time.Second * preset.Heartbeat.Interval)
 
 			err := preset.IsHeartbeatAlive()
-			if err == nil {
+			// if err == nil {
+			if false {
 				continue
 			}
 
@@ -37,6 +40,7 @@ func (preset AutoAuthPreset) StartAutoLogin() {
 			}
 		}
 		xlog.Info("corutine has stopped by user")
+		sig <- syscall.SIGKILL
 	}()
 }
 
