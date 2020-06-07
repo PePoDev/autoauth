@@ -1,5 +1,5 @@
 # build stage
-FROM golang:latest AS builder
+FROM golang:alpine AS builder
 ADD . /
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -i -a -o /autoauth /
 
