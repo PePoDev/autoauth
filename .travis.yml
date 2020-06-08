@@ -22,7 +22,7 @@ after_success:
 
 deploy:
   provider: releases
-  api_key: ddad29f53cca0b26f23160095eb995b65c463592
+  api_key: bbfdf3216faff44fa458679fb33f648d14af9693
   file:
     - autoauth.windows.amd64.exe
     - autoauth.darwin.amd64
