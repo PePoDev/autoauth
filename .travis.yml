@@ -10,7 +10,6 @@ go:
   - 1.14.x
 
 before_install:
-  - go get github.com/mitchellh/gox
   - go get -t -v ./...
 
 script:
@@ -24,8 +23,7 @@ after_success:
 
 deploy:
   provider: releases
-  api_key:
-    secure: Mk3Pmf1gt6FYNGdwfopilQqVABmW2YKgIZ46zNNTBf7nQfsDSFoOZ5QFN6/QoJZtJpeZHLJOaiPgKSv33uIju8wKCVSomyEXsKPwrF80H+z3U48wegBwERlsQlYZ3voFJpM8IRc5+o3ZarkJngmbbwKzr0bLJ31+BZ8KqYOmf/ebNj7pcEeq5LKe9zczBFwb2VVwjIv3BGgiCspsZlTj5k6epuTMijxRn5MTP4BcUb1lZECHnEH22VyYymFAggLGgvkT73LIHPxplAvOn5KadcTh7kiFzPU1HI8BNlCqEb6rLt+RCtUMqK6O/WC6eQIiJWFF/XLNMVC74+hSf2ey+5RYhJLTWWUUGBkamuYAH4EDeOxBAi7DuzLqqMTjooahUi0MbiySLdVdhtPXA42Glt53XZMpmtoWb3sIgIOknL4uBcLFWBPBdIIdt1U7uIM+0wDFaMhy9xlisT5QwIZpl4ZZMfNXvK6nQPa3xKmYMOa5LnhWiuAg0aUP+5mBYraESfwvK2oxTzmu9zpUhQVXgCYwDQMLx4WlgAOxeLS34W7LW2rMjkji4aqYZ6Yks2emE+2O9OH7tjru8UtjmRl9RXYisoKL+xHuS8kpWnmvu39lOE6PpSFOsDNukKrLmJGcCsMLyg7u8V4dLS2Yl4Xr6yixEIX3uncy6KcxQBt+FR4=
+  api_key: 050174e03985ed53b1d97b73a5eb0b64e3f16910
   file:
     - autoauth.windows.amd64.exe
     - autoauth.darwin.amd64
