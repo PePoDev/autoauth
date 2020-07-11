@@ -115,13 +115,13 @@ Or use **Help** command to see, What's Autoauth CLI can do for you.
 
 ## 📝 Todos
 
-- ~~Add docker image~~
+- [x] Add docker image
 
-- Add complied binary file
+- [] Add complied binary file
 
-- Save key from response for use in another purpose
+- [] Save key from response for use in another purpose
 
-- ~~Add retries rule~~
+- [x] Add retries rule
 
 - Create preset file from CLI
 
