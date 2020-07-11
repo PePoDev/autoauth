@@ -117,25 +117,25 @@ Or use **Help** command to see, What's Autoauth CLI can do for you.
 
 - [x] Add docker image
 
-- [] Add complied binary file
+- [ ] Add complied binary file
 
-- [] Save key from response for use in another purpose
+- [ ] Save key from response for use in another purpose
 
 - [x] Add retries rule
 
-- Create preset file from CLI
+- [ ] Create preset file from CLI
 
-- Decrypt with key for read secret variables from preset file
+- [ ] Decrypt with key for read secret variables from preset file
 
-- ~~Implement timeout from preset file~~
+- [ ] Implement timeout from preset file
 
-- Write unit tests
+- [ ] Write unit tests
 
-- Write benchmark
+- [ ] Write benchmark
 
-- Write documents
+- [ ] Write documents
 
-- Create GUI
+- [ ] Create GUI
 
 ## 🛒 Dependencies
 
