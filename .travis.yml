@@ -16,7 +16,7 @@ after_success:
   - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -i -a -o ./autoauth.linux.amd64 .
 deploy:
   provider: releases
-  api_key:
+  token:
     secure: dQdnXk2GTVJ6vZI4WjmlWBfJl9/5gnVdPiZhNc+uUO3i/ETpx/0FhBvqwdgQr6oFb4FV+ku1DNVZ79Dx+f1F5RzW+5QAGDxdgwbVzDbo4xo/bGmvFVFv8LSyl7Bvcm6rpf8CvsA9SbSx1G7ejZGymNIMXMBO/Df6aPXBW5GfXXbu/eQhB+5X4Ly5ezeVF7M9dbLcQGWgJZHEc8z3Wfqj0b9B+nX1wZa3ZzCi0IZWJ50dUQ7kvOVWpJaV21saFJRUvcpLYYI3keOkloDPOu71om0l4LullH1PEN6QkHybwipLQnK878sYmGmI/v4yMshEXPGO5mJi+SZnn/tBhGwxEnIuVOjAAVGT7Ac8mxt9/Q5UMFI+rVb/4CaTMaohAqtbm2R7qFENvoDZtK8/7t9Sv/Aj+zQtK9/4UyaWsZRhMTqHAEz6p64KAQ05nQf/jKOhbdlTrKKvqQD4eVMC+R6BNrHBP0OVKVGzuhXfJVRhALuTgfH+QBZWr9FlWesWSKMN3LKvCHaa80S3K3pB8iJAc+eTL8qtKPqV96VOPCruN2fDb2AXgWXH5gUKV91mTPwNCuCh8WN712bFRlHC7ClekF/kGKqBkzu4GqTk2QK8cyF7oIdKIDaNpt7TVXtnc4HconKbZ9kolVz6Pm9ZVqDhPzvJ2XJAkqj6aRr4DEHSg7s=
   file:
     - autoauth.windows.amd64.exe

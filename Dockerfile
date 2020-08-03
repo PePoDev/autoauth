@@ -1,12 +1,13 @@
 # build stage
 FROM golang:alpine AS builder
-WORKDIR /code
+WORKDIR /go/src/app
 ADD . .
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -i -a -o /opt/autoauth .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -i -a -o /go/bin/autoauth .
+RUN mkdir -p /etc/autoauth && echo autoauth: > /etc/autoauth/config.yaml
 
 # final stage
-FROM alpine:latest
-COPY --from=builder /opt/autoauth /opt
-RUN mkdir -p /etc/autoauth && echo autoauth: > /etc/autoauth/config.yaml
+FROM gcr.io/distroless/base
+COPY --from=builder /go/bin/autoauth /
 VOLUME [ "/etc/autoauth" ]
-CMD ["sh", "-c","/opt/autoauth start -f /etc/autoauth/config.yaml"]
+COPY --from=builder /etc/autoauth/config.yaml /etc/autoauth/
+CMD ["/opt/autoauth", "start", "-f /etc/autoauth/config.yaml"]
