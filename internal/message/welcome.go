@@ -1,3 +1,4 @@
+// Package message is a utility function to print message
 package message
 
 // GetWelcome message for title of cli

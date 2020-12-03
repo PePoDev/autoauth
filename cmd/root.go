@@ -1,3 +1,4 @@
+// Package cmd is structure of commands
 package cmd
 
 import (
@@ -18,7 +19,6 @@ var RootCmd = &cobra.Command{
 }
 
 func init() {
-	xlog.DefaultXlogFormatter()
 	xlog.SetLevel(logrus.InfoLevel)
 
 	RootCmd.AddCommand(startCmd)
