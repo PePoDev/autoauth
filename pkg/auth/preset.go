@@ -8,7 +8,7 @@ import (
 )
 
 // LoadPresetFromPath will load preset from path and return it
-func LoadPresetFromPath(dir string, fileName string) AutoAuthPreset {
+func LoadPresetFromPath(dir, fileName string) AutoAuthPreset {
 	viper.SetConfigFile(fileName)
 	viper.AddConfigPath(dir)
 	if err := viper.ReadInConfig(); err != nil {

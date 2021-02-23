@@ -9,7 +9,7 @@ import (
 
 	"github.com/pepodev/autoauth/internal/message"
 	"github.com/spf13/cobra"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 )
 
 var createCmd = &cobra.Command{
@@ -24,7 +24,7 @@ var createCmd = &cobra.Command{
 		username, _ := reader.ReadString('\n')
 
 		fmt.Print("Key: ")
-		byteKey, err := terminal.ReadPassword(int(syscall.Stdin))
+		byteKey, err := term.ReadPassword(int(syscall.Stdin))
 		if err == nil {
 			fmt.Println("\nKey typed: " + string(byteKey))
 		}

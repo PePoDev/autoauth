@@ -3,6 +3,7 @@ package utils
 import (
 	"crypto/tls"
 	"net"
+	"os"
 	"strings"
 	"time"
 
@@ -22,13 +23,13 @@ func init() {
 			return fasthttp.DialTimeout(addr, time.Second*time.Duration(10))
 		},
 		TLSConfig: &tls.Config{
-			InsecureSkipVerify: true,
+			InsecureSkipVerify: os.Getenv("FORCE_TLS") != "true",
 		},
 	}
 }
 
 // Do will send http request and return the response
-func Do(url string, method string, headers []string, bodys []string, timeout time.Duration) (*fasthttp.Response, error) {
+func Do(url, method string, headers, bodys []string, timeout time.Duration) (*fasthttp.Response, error) {
 	req := fasthttp.AcquireRequest()
 	req.SetRequestURI(url)
 
