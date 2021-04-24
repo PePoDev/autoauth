@@ -1,6 +1,6 @@
 # AutoAuth
 
-![Banner](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/banner.png)
+![Banner](img/banner.png)
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/pepodev/autoauth)](https://goreportcard.com/report/github.com/pepodev/autoauth)
 [![GoDoc](https://godoc.org/github.com/PePoDev/autoauth?status.svg)](http://godoc.org/github.com/PePoDev/autoauth)
@@ -24,7 +24,7 @@
 
 - [Usage](#-cli-usage)
 
-- [Todos](#-todos)
+- [Todo](#-todo)
 
 - [Dependencies](#-dependencies)
 
@@ -53,7 +53,7 @@ Check [release](https://github.com/PePoDev/autoauth/releases) page to see availa
 ## 📃 Example Preset file
 
 ```yml
-# Example preset file for univercity KMITL wifi portal
+# Example preset file for university KMITL wifi portal
 autoauth:
   name: KMITL
   encrypted: false
@@ -103,17 +103,15 @@ Basic usage run this command to **Start** Autoauth
 ~$ autoauth start -f ./autoauth.yml
 ```
 
-![Start Command](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/screenshots/screenshot-2.png)
-
 Or use **Help** command to see, What's Autoauth CLI can do for you.
 
 ```console
 ~$ autoauth --help
 ```
 
-![Help Command](https://raw.githubusercontent.com/PePoDev/pepodev.github.io/master/doc-assets/autoauth/screenshots/screenshot-1.png)
+![Help Command](img/help.png)
 
-## 📝 Todos
+## 📝 Todo
 
 - [x] ~~Add docker image~~
 
