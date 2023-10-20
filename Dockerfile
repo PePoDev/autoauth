@@ -10,4 +10,4 @@ FROM gcr.io/distroless/base
 COPY --from=builder /go/bin/autoauth /
 VOLUME [ "/etc/autoauth" ]
 COPY --from=builder /etc/autoauth/config.yaml /etc/autoauth/
-CMD ["/opt/autoauth", "start", "-f /etc/autoauth/config.yaml"]
+CMD ["/autoauth", "start", "-f /etc/autoauth/config.yaml"]
